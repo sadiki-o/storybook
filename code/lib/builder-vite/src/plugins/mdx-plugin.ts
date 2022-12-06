@@ -1,8 +1,17 @@
-import type { Options, StorybookConfig } from '@storybook/types';
+import type { Options, Preset, StorybookConfig } from '@storybook/types';
 import type { Plugin } from 'vite';
 import { createFilter } from 'vite';
 
 const isStorybookMdx = (id: string) => id.endsWith('stories.mdx') || id.endsWith('story.mdx');
+
+type AddonWithOptions = Exclude<Preset, string>;
+function getAddonOptions(addons: StorybookConfig['addons'], name: string): Record<string, any> {
+  return (
+    addons?.find(
+      (addon): addon is AddonWithOptions => typeof addon !== 'string' && addon.name === name
+    )?.options ?? {}
+  );
+}
 
 /**
  * Storybook uses two different loaders when dealing with MDX:
@@ -16,9 +25,7 @@ export async function mdxPlugin(options: Options): Promise<Plugin> {
   const include = /\.mdx?$/;
   const filter = createFilter(include);
   const addons = await options.presets.apply<StorybookConfig['addons']>('addons', []);
-  const docsOptions =
-    // @ts-expect-error - not sure what type to use here
-    addons.find((a) => [a, a.name].includes('@storybook/addon-docs'))?.options ?? {};
+  const { mdxPluginOptions, jsxOptions } = getAddonOptions(addons, '@storybook/addon-docs');
 
   return {
     name: 'storybook:mdx-plugin',
@@ -29,10 +36,12 @@ export async function mdxPlugin(options: Options): Promise<Plugin> {
       const { compile } = await import('@storybook/mdx2-csf');
 
       const mdxLoaderOptions = await options.presets.apply('mdxLoaderOptions', {
+        ...mdxPluginOptions,
         mdxCompileOptions: {
           providerImportSource: '@storybook/addon-docs/mdx-react-shim',
+          ...mdxPluginOptions?.mdxCompileOptions,
         },
-        jsxOptions: docsOptions.jsxOptions,
+        jsxOptions,
       });
 
       const code = String(

@@ -6763,9 +6763,9 @@ __metadata:
   linkType: soft
 
 "@storybook/mdx2-csf@npm:next":
-  version: 1.0.0-next.3
-  resolution: "@storybook/mdx2-csf@npm:1.0.0-next.3"
-  checksum: b56a458570fbe8cfdd67e2626a845b854e01b9160dc9dbcf26ed61f01b9187dbbb53c1cc4e3303d3fdb58dce7a47caf9ba2c5f83afa3284ca22ba25fecadd15c
+  version: 1.0.0-next.4
+  resolution: "@storybook/mdx2-csf@npm:1.0.0-next.4"
+  checksum: 27da0583b66cc83e38753499175b2b64261da2e3bdf2d954506f58acd65c1d870ed5291425fd7a953c68f28269fee084dac44c448e52de8e2ca35bcb7ad27763
   languageName: node
   linkType: hard
 

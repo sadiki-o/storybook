@@ -5,7 +5,7 @@ import { dedent } from 'ts-dedent';
 
 import type { IndexerOptions, StoryIndexer, DocsOptions, Options } from '@storybook/types';
 import type { CsfPluginOptions } from '@storybook/csf-plugin';
-import type { JSXOptions } from '@storybook/mdx2-csf';
+import type { JSXOptions, CompileOptions } from '@storybook/mdx2-csf';
 import { loadCsf } from '@storybook/csf-tools';
 
 async function webpack(
@@ -26,6 +26,7 @@ async function webpack(
     csfPluginOptions: CsfPluginOptions | null;
     transcludeMarkdown: boolean;
     jsxOptions?: JSXOptions;
+    mdxPluginOptions?: CompileOptions;
   } /* & Parameters<
       typeof createCompiler
     >[0] */
@@ -41,13 +42,18 @@ async function webpack(
     sourceLoaderOptions = null,
     configureJsx,
     mdxBabelOptions,
+    mdxPluginOptions = {},
   } = options;
 
-  const mdxLoaderOptions = await options.presets.apply('mdxLoaderOptions', {
+  const mdxLoaderOptions: CompileOptions = await options.presets.apply('mdxLoaderOptions', {
     skipCsf: true,
+    ...mdxPluginOptions,
     mdxCompileOptions: {
       providerImportSource: '@storybook/addon-docs/mdx-react-shim',
-      remarkPlugins: [remarkSlug, remarkExternalLinks],
+      ...mdxPluginOptions.mdxCompileOptions,
+      remarkPlugins: [remarkSlug, remarkExternalLinks].concat(
+        mdxPluginOptions?.mdxCompileOptions?.remarkPlugins ?? []
+      ),
     },
     jsxOptions,
   });
