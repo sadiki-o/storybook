@@ -344,14 +344,6 @@ describe('Detect', () => {
         )
       ).toBe(false);
     });
-
-    it('ALREADY_HAS_STORYBOOK if lib is present', () => {
-      expect(
-        isStorybookInstalled({
-          devDependencies: { '@storybook/react': '4.0.0-alpha.21' },
-        })
-      ).toBe(ProjectType.ALREADY_HAS_STORYBOOK);
-    });
   });
 
   describe('detectFrameworkPreset should return', () => {

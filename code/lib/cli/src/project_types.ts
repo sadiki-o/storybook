@@ -69,7 +69,6 @@ export enum ProjectType {
   SFC_VUE = 'SFC_VUE',
   ANGULAR = 'ANGULAR',
   EMBER = 'EMBER',
-  ALREADY_HAS_STORYBOOK = 'ALREADY_HAS_STORYBOOK',
   WEB_COMPONENTS = 'WEB_COMPONENTS',
   MITHRIL = 'MITHRIL',
   MARIONETTE = 'MARIONETTE',
@@ -82,6 +81,7 @@ export enum ProjectType {
   RAX = 'RAX',
   AURELIA = 'AURELIA',
   SERVER = 'SERVER',
+  NX = 'NX',
 }
 
 export enum CoreBuilder {
@@ -193,20 +193,6 @@ export const supportedTemplates: TemplateConfiguration[] = [
     },
   },
   {
-    preset: ProjectType.WEBPACK_REACT,
-    dependencies: ['react', 'webpack'],
-    matcherFunction: ({ dependencies }) => {
-      return dependencies.every(Boolean);
-    },
-  },
-  {
-    preset: ProjectType.REACT,
-    dependencies: ['react'],
-    matcherFunction: ({ dependencies }) => {
-      return dependencies.every(Boolean);
-    },
-  },
-  {
     preset: ProjectType.ANGULAR,
     dependencies: ['@angular/core'],
     matcherFunction: ({ dependencies }) => {
@@ -284,6 +270,22 @@ export const supportedTemplates: TemplateConfiguration[] = [
       return dependencies.every(Boolean);
     },
   },
+  // DO NOT MOVE ANY TEMPLATES BELOW THIS LINE
+  // React is part of every Template, after Storybook is initialized once
+  {
+    preset: ProjectType.WEBPACK_REACT,
+    dependencies: ['react', 'webpack'],
+    matcherFunction: ({ dependencies }) => {
+      return dependencies.every(Boolean);
+    },
+  },
+  {
+    preset: ProjectType.REACT,
+    dependencies: ['react'],
+    matcherFunction: ({ dependencies }) => {
+      return dependencies.every(Boolean);
+    },
+  },
 ];
 
 // A TemplateConfiguration that matches unsupported frameworks
@@ -300,11 +302,7 @@ export const unsupportedTemplate: TemplateConfiguration = {
   },
 };
 
-const notInstallableProjectTypes: ProjectType[] = [
-  ProjectType.UNDETECTED,
-  ProjectType.UNSUPPORTED,
-  ProjectType.ALREADY_HAS_STORYBOOK,
-];
+const notInstallableProjectTypes: ProjectType[] = [ProjectType.UNDETECTED, ProjectType.UNSUPPORTED];
 
 export const installableProjectTypes = Object.values(ProjectType)
   .filter((type) => !notInstallableProjectTypes.includes(type))
