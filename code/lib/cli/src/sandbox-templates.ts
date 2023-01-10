@@ -249,16 +249,6 @@ const baseTemplates = {
       builder: '@storybook/builder-webpack5',
     },
   },
-  'angular-cli/13-ts': {
-    name: 'Angular CLI (Version 13)',
-    script:
-      'npx -p @angular/cli@13 ng new angular-v13 --directory . --routing=true --minimal=true --style=scss --strict --skip-git --skip-install --package-manager=yarn',
-    expected: {
-      framework: '@storybook/angular',
-      renderer: '@storybook/angular',
-      builder: '@storybook/builder-webpack5',
-    },
-  },
   'svelte-kit/skeleton-js': {
     name: 'Svelte Kit (JS)',
     script:
@@ -421,7 +411,6 @@ export const merged: TemplateKey[] = [
   'react-webpack/18-ts',
   'react-webpack/17-ts',
   'angular-cli/14-ts',
-  'angular-cli/13-ts',
   'preact-webpack5/default-ts',
   'preact-vite/default-ts',
   'html-webpack/default',

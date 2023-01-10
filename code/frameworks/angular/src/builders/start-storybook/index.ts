@@ -6,11 +6,7 @@ import {
   targetFromTargetString,
 } from '@angular-devkit/architect';
 import { JsonObject } from '@angular-devkit/core';
-import {
-  BrowserBuilderOptions,
-  ExtraEntryPoint,
-  StylePreprocessorOptions,
-} from '@angular-devkit/build-angular';
+import { BrowserBuilderOptions, StylePreprocessorOptions } from '@angular-devkit/build-angular';
 import { from, Observable, of } from 'rxjs';
 import { CLIOptions } from '@storybook/types';
 import { map, switchMap, mapTo } from 'rxjs/operators';
@@ -18,6 +14,7 @@ import { sync as findUpSync } from 'find-up';
 import { sync as readUpSync } from 'read-pkg-up';
 
 import { buildDevStandalone } from '@storybook/core-server';
+import { StyleElement } from '@angular-devkit/build-angular/src/builders/browser/schema';
 import { StandaloneOptions } from '../utils/standalone-options';
 import { runCompodoc } from '../utils/run-compodoc';
 import { buildStandaloneErrorHandler } from '../utils/build-standalone-errors-handler';
@@ -28,7 +25,7 @@ export type StorybookBuilderOptions = JsonObject & {
   docsMode: boolean;
   compodoc: boolean;
   compodocArgs: string[];
-  styles?: ExtraEntryPoint[];
+  styles?: StyleElement[];
   stylePreprocessorOptions?: StylePreprocessorOptions;
 } & Pick<
     // makes sure the option exists
