@@ -1,5 +1,4 @@
 import {
-  ComponentFactory,
   Type,
   Component,
   ComponentFactoryResolver,
@@ -238,18 +237,14 @@ describe('isComponent', () => {
 
 describe('isStandaloneComponent', () => {
   it('should return true with a Component with "standalone: true"', () => {
-    // TODO: `standalone` is only available in Angular v14. Remove cast to `any` once
-    // Angular deps are updated to v14.x.x.
-    @Component({ standalone: true } as any)
+    @Component({ standalone: true })
     class FooComponent {}
 
     expect(isStandaloneComponent(FooComponent)).toEqual(true);
   });
 
   it('should return false with a Component with "standalone: false"', () => {
-    // TODO: `standalone` is only available in Angular v14. Remove cast to `any` once
-    // Angular deps are updated to v14.x.x.
-    @Component({ standalone: false } as any)
+    @Component({ standalone: false })
     class FooComponent {}
 
     expect(isStandaloneComponent(FooComponent)).toEqual(false);
@@ -269,18 +264,14 @@ describe('isStandaloneComponent', () => {
   });
 
   it('should return true with a Directive with "standalone: true"', () => {
-    // TODO: `standalone` is only available in Angular v14. Remove cast to `any` once
-    // Angular deps are updated to v14.x.x.
-    @Directive({ standalone: true } as any)
+    @Directive({ standalone: true })
     class FooDirective {}
 
     expect(isStandaloneComponent(FooDirective)).toEqual(true);
   });
 
   it('should return false with a Directive with "standalone: false"', () => {
-    // TODO: `standalone` is only available in Angular v14. Remove cast to `any` once
-    // Angular deps are updated to v14.x.x.
-    @Directive({ standalone: false } as any)
+    @Directive({ standalone: false })
     class FooDirective {}
 
     expect(isStandaloneComponent(FooDirective)).toEqual(false);
@@ -294,18 +285,14 @@ describe('isStandaloneComponent', () => {
   });
 
   it('should return true with a Pipe with "standalone: true"', () => {
-    // TODO: `standalone` is only available in Angular v14. Remove cast to `any` once
-    // Angular deps are updated to v14.x.x.
-    @Pipe({ standalone: true } as any)
+    @Pipe({ name: 'FooPipe', standalone: true })
     class FooPipe {}
 
     expect(isStandaloneComponent(FooPipe)).toEqual(true);
   });
 
   it('should return false with a Pipe with "standalone: false"', () => {
-    // TODO: `standalone` is only available in Angular v14. Remove cast to `any` once
-    // Angular deps are updated to v14.x.x.
-    @Pipe({ standalone: false } as any)
+    @Pipe({ name: 'FooPipe', standalone: false })
     class FooPipe {}
 
     expect(isStandaloneComponent(FooPipe)).toEqual(false);
@@ -356,7 +343,7 @@ function sortByPropName(
   return array.sort((a, b) => a.propName.localeCompare(b.propName));
 }
 
-function resolveComponentFactory<T extends Type<any>>(component: T): ComponentFactory<T> {
+function resolveComponentFactory<T extends Type<any>>(component: T) {
   TestBed.configureTestingModule({
     declarations: [component],
   }).overrideModule(BrowserDynamicTestingModule, {

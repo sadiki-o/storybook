@@ -117,9 +117,7 @@ export const isStandaloneComponent = (component: any): component is Type<unknown
   // TODO: `standalone` is only available in Angular v14. Remove cast to `any` once
   // Angular deps are updated to v14.x.x.
   return (decorators || []).some(
-    (d) =>
-      (d instanceof Component || d instanceof Directive || d instanceof Pipe) &&
-      (d as any).standalone
+    (d) => (d instanceof Component || d instanceof Directive || d instanceof Pipe) && d.standalone
   );
 };
 
