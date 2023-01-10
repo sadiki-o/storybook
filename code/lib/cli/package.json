@@ -29,7 +29,8 @@
       "import": "./dist/index.mjs",
       "types": "./dist/index.d.ts"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./bin/index": "./bin/index.js"
   },
   "main": "dist/index.js",
   "module": "dist/index.mjs",
