@@ -9,6 +9,7 @@ import type { SourceContextProps } from './SourceContainer';
 import { SourceContext } from './SourceContainer';
 import { useSourceProps, SourceState } from './Source';
 import { useStories } from './useStory';
+import { getStoryId } from './Story';
 
 export { SourceState };
 
@@ -29,12 +30,7 @@ const usePreviewProps = (
   */
   const storyIds = (Children.toArray(children) as ReactElement[])
     .filter((c) => c.props && (c.props.id || c.props.name || c.props.of))
-    .map(({ props: { id, of, name } }) => {
-      if (id) return id;
-      if (of) return docsContext.storyIdByModuleExport(of);
-
-      return docsContext.storyIdByName(name);
-    });
+    .map((c) => getStoryId(c.props, docsContext));
 
   const stories = useStories(storyIds, docsContext);
   const isLoading = stories.some((s) => !s);

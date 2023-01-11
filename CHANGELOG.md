@@ -1,3 +1,85 @@
+## 7.0.0-beta.24 (January 11, 2023)
+
+#### Maintenance
+
+-   Migrations: Add `preact-vite` to new frameworks automigration [#20542](https://github.com/storybooks/storybook/pull/20542)
+
+#### Build
+
+-   Build: remove unneeded dependencies & upgrades [#20533](https://github.com/storybooks/storybook/pull/20533)
+-   Build: upgrade verdaccio [#20561](https://github.com/storybooks/storybook/pull/20561)
+-   Build: remove usage of enzyme [#20534](https://github.com/storybooks/storybook/pull/20534)
+
+## 7.0.0-beta.23 (January 10, 2023)
+
+#### Features
+
+-   Composition: Add basic auth support [#20488](https://github.com/storybooks/storybook/pull/20488)
+
+#### Bug Fixes
+
+-   UI: Fix managerEntries containing long paths with hidden folders [#20550](https://github.com/storybooks/storybook/pull/20550)
+-   Addon-docs: Fix attachment logic [#20531](https://github.com/storybooks/storybook/pull/20531)
+
+#### Maintenance
+
+-   Addon-docs: Move reactPeerCheck to docs package [#20560](https://github.com/storybooks/storybook/pull/20560)
+-   Addon-docs: Rename `storyByModuleExport` to `resolveModuleExport` [#20517](https://github.com/storybooks/storybook/pull/20517)
+-   Telemetry: Filter out example stories/docs from summary [#20553](https://github.com/storybooks/storybook/pull/20553)
+-   Telemetry: Count play function usage [#20541](https://github.com/storybooks/storybook/pull/20541)
+-   Telemetry: Add pageStoryCount [#20539](https://github.com/storybooks/storybook/pull/20539)
+-   Vite/Vue3: Pre-bundle @vitejs/plugin-vue [#20343](https://github.com/storybooks/storybook/pull/20343)
+
+#### Build
+
+-   Build: downgrade slash to non-ESM [#20543](https://github.com/storybooks/storybook/pull/20543)
+
+#### Other
+
+-   Update GH action to use "linear-ghaction" label for sync [#20546](https://github.com/storybooks/storybook/pull/20546)
+
+## 7.0.0-beta.22 (January 10, 2023)
+
+Failed publish
+
+## 7.0.0-beta.21 (January 9, 2023)
+
+#### Maintenance
+
+-   Ember: Build with tsc [#20524](https://github.com/storybooks/storybook/pull/20524)
+-   Storyshots: Build with tsc [#20523](https://github.com/storybooks/storybook/pull/20523)
+
+#### Dependencies
+
+-   Downgrade find-cache-dir [#20532](https://github.com/storybooks/storybook/pull/20532)
+
+#### Build
+
+-   Build: Cleanup babel prepare related code & dependencies [#20156](https://github.com/storybooks/storybook/pull/20156)
+-   Build: Create a tsc prepare script, use it for angular framework, add ESM to angular dist [#20516](https://github.com/storybooks/storybook/pull/20516)
+-   Build: Fix InternalCanvas story tests [#20521](https://github.com/storybooks/storybook/pull/20521)
+
+## 7.0.0-beta.20 (January 6, 2023)
+
+#### Bug Fixes
+
+-   Telemetry: Move 'dev'/'build' events to the end of the process [#20380](https://github.com/storybooks/storybook/pull/20380)
+-   Blocks: Export Unstyled block in index.ts [#20489](https://github.com/storybooks/storybook/pull/20489)
+-   Vite: Fix missing await in builder [#20409](https://github.com/storybooks/storybook/pull/20409)
+
+#### Maintenance
+
+-   Build: use tsup for csf-plugin [#20150](https://github.com/storybooks/storybook/pull/20150)
+-   Migration: Update autodocs migration to deal with `docs.docsPage` [#20379](https://github.com/storybooks/storybook/pull/20379)
+
+#### Build
+
+-   Blocks: Use example Button for stories [#20483](https://github.com/storybooks/storybook/pull/20483)
+-   Build: cleanup prep script where possible [#20151](https://github.com/storybooks/storybook/pull/20151)
+-   cleanup CI config [#20510](https://github.com/storybooks/storybook/pull/20510)
+-   Build: Fix CI parallelism [#20476](https://github.com/storybooks/storybook/pull/20476)
+-   Web-components: Restore missing script stories [#20477](https://github.com/storybooks/storybook/pull/20477)
+
 ## 7.0.0-beta.19 (January 1, 2023)
 
 #### Features

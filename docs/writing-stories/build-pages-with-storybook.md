@@ -38,10 +38,10 @@ When you are building screens in this way, it is typical that the inputs of a co
   paths={[
     'react/simple-page-implementation.js.mdx',
     'react/simple-page-implementation.ts.mdx',
-    'vue/simple-page-implementation.2.mdx',
-    'vue/simple-page-implementation.3.mdx',
+    'vue/simple-page-implementation.2.js.mdx',
+    'vue/simple-page-implementation.3.js.mdx',
     'angular/simple-page-implementation.ts.mdx',
-    'svelte/simple-page-implementation.js',
+    'svelte/simple-page-implementation.js.mdx',
   ]}
 />
 

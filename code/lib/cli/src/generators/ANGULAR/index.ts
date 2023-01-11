@@ -73,7 +73,7 @@ const generator: Generator = async (packageManager, npmOptions, options) => {
   }
   */
 
-  // to the user's angular.json file. see: https://github.com/storybookjs/storybook/blob/next/examples/angular-cli/angular.json#L78
+  // to the user's angular.json file.
 
   // then we want to add these scripts to package.json
   // packageManager.addScripts({

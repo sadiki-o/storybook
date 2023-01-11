@@ -90,7 +90,7 @@ module.exports = {
         '**/__testfixtures__/**',
         '**/*.test.*',
         '**/*.stories.*',
-        '**/storyshots/**/stories/**',
+        '**/storyshots-*/**/stories/**',
       ],
       rules: {
         '@typescript-eslint/no-empty-function': 'off',
