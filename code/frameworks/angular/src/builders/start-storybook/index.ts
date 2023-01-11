@@ -13,7 +13,7 @@ import { map, switchMap, mapTo } from 'rxjs/operators';
 import { sync as findUpSync } from 'find-up';
 import { sync as readUpSync } from 'read-pkg-up';
 
-import { buildDevStandalone } from '@storybook/core-server';
+import { buildDevStandalone, withTelemetry } from '@storybook/core-server';
 import { StyleElement } from '@angular-devkit/build-angular/src/builders/browser/schema';
 import { StandaloneOptions } from '../utils/standalone-options';
 import { runCompodoc } from '../utils/run-compodoc';
@@ -40,6 +40,7 @@ export type StorybookBuilderOptions = JsonObject & {
     | 'smokeTest'
     | 'ci'
     | 'quiet'
+    | 'disableTelemetry'
   >;
 
 export type StorybookBuilderOutput = JsonObject & BuilderOutput & {};
@@ -76,6 +77,7 @@ function commandBuilder(
         sslCa,
         sslCert,
         sslKey,
+        disableTelemetry,
       } = options;
 
       const standaloneOptions: StandaloneOptions = {
@@ -91,6 +93,7 @@ function commandBuilder(
         sslCa,
         sslCert,
         sslKey,
+        disableTelemetry,
         angularBrowserTarget: browserTarget,
         angularBuilderContext: context,
         angularBuilderOptions: {
@@ -131,9 +134,17 @@ async function setup(options: StorybookBuilderOptions, context: BuilderContext) 
 function runInstance(options: StandaloneOptions) {
   return new Observable<number>((observer) => {
     // This Observable intentionally never complete, leaving the process running ;)
-    buildDevStandalone(options as any).then(
-      ({ port }) => observer.next(port),
-      (error) => observer.error(buildStandaloneErrorHandler(error))
+    withTelemetry(
+      'dev',
+      {
+        cliOptions: options,
+        presetOptions: { ...options, corePresets: [], overridePresets: [] },
+      },
+      () =>
+        buildDevStandalone(options).then(
+          ({ port }) => observer.next(port),
+          (error) => observer.error(buildStandaloneErrorHandler(error))
+        )
     );
   });
 }
