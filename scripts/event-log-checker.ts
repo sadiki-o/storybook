@@ -25,7 +25,11 @@ async function run() {
 
   const events = await (await fetch(`http://localhost:${PORT}/event-log`)).json();
 
-  assert.equal(events.length, 2);
+  assert.equal(
+    events.length,
+    2,
+    `Expected 2 events. The following events were logged: ${JSON.stringify(events)} `
+  );
 
   const [bootEvent, mainEvent] = events;
 
