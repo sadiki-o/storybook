@@ -110,7 +110,10 @@ export class AngularJSON {
         builder: '@storybook/angular:build-storybook',
         options: {
           ...baseOptions,
-          outputDir: `dist/storybook/${angularProjectName}`,
+          outputDir:
+            Object.keys(this.projects).length === 1
+              ? `storybook-static`
+              : `dist/storybook/${angularProjectName}`,
         },
       };
     }
