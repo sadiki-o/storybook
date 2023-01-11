@@ -44,19 +44,25 @@ export class AngularJSON {
     return this.json.projects;
   }
 
+  get projectsWithoutStorybook() {
+    return Object.keys(this.projects).filter((projectName) => {
+      const { architect } = this.projects[projectName];
+
+      return !architect.storybook;
+    });
+  }
+
   getProjectSettingsByName(projectName: string) {
     return this.projects[projectName];
   }
 
   async getProjectName() {
-    const projectKeys = Object.keys(this.projects);
-
-    if (projectKeys.length > 1) {
+    if (this.projectsWithoutStorybook.length > 1) {
       const { projectName } = await prompts({
         type: 'select',
         name: 'projectName',
         message: 'For which project do you want to generate Storybook configuration?',
-        choices: projectKeys.map((name) => ({
+        choices: this.projectsWithoutStorybook.map((name) => ({
           title: name,
           value: name,
         })),
@@ -65,7 +71,7 @@ export class AngularJSON {
       return projectName;
     }
 
-    return Object.keys(this.projects)[0];
+    return this.projectsWithoutStorybook[0];
   }
 
   addStorybookEntries({

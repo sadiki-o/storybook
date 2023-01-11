@@ -7,7 +7,7 @@ import type { Generator } from '../types';
 import { CoreBuilder } from '../../project_types';
 import { AngularJSON, compoDocPreviewPrefix, promptForCompoDocs } from './helpers';
 import { getCliDir } from '../../dirs';
-import { copyTemplate } from '../../helpers';
+import { paddedLog, copyTemplate } from '../../helpers';
 import { isStorybookInstalled } from '../../detect';
 
 const generator: Generator<{ projectName: string }> = async (
@@ -30,7 +30,18 @@ const generator: Generator<{ projectName: string }> = async (
   const updatedOptions = isWebpack5 ? { ...options, builder: CoreBuilder.Webpack5 } : options;
 
   const angularJSON = new AngularJSON();
+
+  if (angularJSON.projectsWithoutStorybook.length === 0) {
+    paddedLog(
+      'Every project in your workspace is already set up with Storybook. There is nothing to do!'
+    );
+    return Promise.reject();
+  }
+
   const angularProjectName = await angularJSON.getProjectName();
+
+  paddedLog(`Adding Storybook support to your "${angularProjectName}" project`);
+
   const { root } = angularJSON.getProjectSettingsByName(angularProjectName);
   const { projects } = angularJSON;
   const useCompodoc = commandOptions.yes ? true : await promptForCompoDocs();
