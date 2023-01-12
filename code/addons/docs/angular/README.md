@@ -13,6 +13,8 @@ To learn more about Storybook Docs, read the [general documentation](../README.m
 - [Installation](#installation)
 - [DocsPage](#docspage)
 - [Props tables](#props-tables)
+  - [Automatic Compodoc setup](#automatic-compodoc-setup)
+- [Manual Compodoc setup](#manual-compodoc-setup)
 - [MDX](#mdx)
 - [IFrame height](#iframe-height)
 - [Inline Stories](#inline-stories)
@@ -42,34 +44,62 @@ When you [install docs](#installation) you should get basic [DocsPage](../docs/d
 
 Getting [Props tables](../docs/props-tables.md) for your components requires a few more steps. Docs for Angular relies on [Compodoc](https://compodoc.app/), the excellent API documentation tool. It supports `inputs`, `outputs`, `properties`, `methods`, `view/content child/children` as first class prop types.
 
-To get this, you'll first need to install Compodoc:
+### Automatic Compodoc setup
+
+During `sb init`, you will be asked, whether you want to setup Compodoc for your project. Just answer the question with Yes. Compodoc is then ready to use!
+
+## Manual Compodoc setup
+
+You'll need to register Compodoc's `documentation.json` file in `.storybook/preview.ts`:
+
+```js
+import { setCompodocJson } from '@storybook/addon-docs/angular';
+import docJson from '../documentation.json';
+
+setCompodocJson(docJson);
+```
+
+Finally, to set up compodoc, you'll first need to install Compodoc:
 
 ```sh
 yarn add -D @compodoc/compodoc
 ```
 
-Then you'll need to configure Compodoc to generate a `documentation.json` file. Adding the following snippet to your `package.json` creates a metadata file `./documentation.json` each time you run storybook:
+Then you'll need to configure Compodoc to generate a `documentation.json` file. Adding the following snippet to your `projects.<project>.architect.<storybook|build-storybook>` in the `angular.json` creates a metadata file `./documentation.json` each time you run storybook:
 
-```json
+```jsonc
+// angular.json
 {
-  ...
-  "scripts": {
-    "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
-    "storybook": "npm run docs:json && start-storybook -p 6006 -s src/assets",
-    ...
-  },
+  "projects": {
+    "your-project": {
+      "architect": {
+        "storybook": {
+          ...,
+          "compodoc": true,
+          "compodocArgs": [
+            "-e",
+            "json",
+            "-d",
+            "." // the root folder of your project
+          ],
+        },
+        "build-storybook": {
+          ...,
+          "compodoc": true,
+          "compodocArgs": [
+            "-e",
+            "json",
+            "-d",
+            "." // the root folder of your project
+          ],
+        }
+      }
+    }
+  }
 }
 ```
 
 Unfortunately, it's not currently possible to update this dynamically as you edit your components, but [there's an open issue](https://github.com/storybookjs/storybook/issues/8672) to support this with improvements to Compodoc.
-
-Next, add the following to `.storybook/preview.ts` to load the Compodoc-generated file:
-
-```js
-import { setCompodocJson } from '@storybook/addon-docs/angular';
-import docJson from '../documentation.json';
-setCompodocJson(docJson);
-```
 
 Finally, be sure to fill in the `component` field in your story metadata:
 

@@ -10,10 +10,6 @@ export async function updatePackageScripts({ cwd, prefix }: { cwd: string; prefi
       storybook: `${prefix} ${packageJson.scripts.storybook}`,
       'build-storybook': `${prefix} ${packageJson.scripts['build-storybook']}`,
     }),
-    // See comment in combine-compodoc as to why this is necessary
-    ...(packageJson.scripts['docs:json'] && {
-      'docs:json': 'DIR=$PWD; cd ../../scripts; yarn ts-node combine-compodoc $DIR',
-    }),
   };
   await writeJSON(packageJsonPath, packageJson, { spaces: 2 });
 }
