@@ -267,6 +267,8 @@
 
 ## From version 6.5.x to 7.0.0
 
+A number of these changes can be made automatically by the storybook cli. To take advantage of these "automigrations", run `npx storybook@next upgrade --prerelease` or `pnpx storybook@next upgrade --prerelease`.
+
 ### 7.0 breaking changes
 
 #### Dropped support for Node 15 and below
