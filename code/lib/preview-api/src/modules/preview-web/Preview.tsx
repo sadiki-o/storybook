@@ -306,7 +306,7 @@ export class Preview<TFramework extends Renderer> {
     await Promise.all(this.storyRenders.filter((r) => r.id === storyId).map((r) => r.remount()));
   }
 
-  // Used by docs' modernInlineRender to render a story to a given element
+  // Used by docs to render a story to a given element
   // Note this short-circuits the `prepare()` phase of the StoryRender,
   // main to be consistent with the previous behaviour. In the future,
   // we will change it to go ahead and load the story, which will end up being

@@ -53,7 +53,6 @@
     - [Dropped addon-docs manual babel configuration](#dropped-addon-docs-manual-babel-configuration)
     - [Dropped addon-docs manual configuration](#dropped-addon-docs-manual-configuration)
     - [Autoplay in docs](#autoplay-in-docs)
-    - [Docs modern inline rendering by default](#docs-modern-inline-rendering-by-default)
     - [Removed STORYBOOK\_REACT\_CLASSES global](#removed-storybook_react_classes-global)
   - [7.0 Deprecations and default changes](#70-deprecations-and-default-changes)
     - [storyStoreV7 enabled by default](#storystorev7-enabled-by-default)
@@ -973,18 +972,6 @@ Storybook Docs 5.x shipped with instructions for how to manually configure webpa
 Running play functions in docs is generally tricky, as they can steal focus and cause the window to scroll. Consequently, we've disabled play functions in docs by default.
 
 If your story depends on a play function to render correctly, _and_ you are confident the function autoplaying won't mess up your docs, you can set `parameters.docs.autoplay = true` to have it auto play.
-
-#### Docs modern inline rendering by default
-
-Storybook docs has a new rendering mode called "modern inline rendering" which unifies the way stories are rendered in Docs mode and in the canvas (aka story mode). It is still being stabilized in 7.0 dev cycle. If you run into trouble with inline rendering in docs, you can opt out of modern inline rendering in your `.storybook/main.js`:
-
-```js
-module.exports = {
-  features: {
-    modernInlineRender: false,
-  },
-};
-```
 
 #### Removed STORYBOOK_REACT_CLASSES global
 

@@ -49,7 +49,6 @@ Additionally, you can also provide additional feature flags to your Storybook co
 | `emotionAlias`        | Provides backwards compatibility for Emotion. See the [migration documentation](https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#emotion11-quasi-compatibility) for context.<br/> `features: { emotionAlias: false }` |
 | `babelModeV7`         | Enables the new [Babel configuration](./babel.md#v7-mode) mode for Storybook. <br/> `features: { babelModeV7: true }`                                                                                                                |
 | `postcss`             | Disables the implicit PostCSS warning. See the [migration documentation](https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#deprecated-implicit-postcss-loader) for context. <br/> `features: { postcss: false }`       |
-| `modernInlineRender`  | Enables Storybook's modern inline rendering mode. <br/> `features: { modernInlineRender: false }`                                                                                                                                    |
 | `previewMdx2`         | Enables experimental support for [MDX 2](../writing-docs/mdx.md#mdx-2).<br/>`features: { previewMdx2: true }`                                                                                                                        |
 
 ## Configure story loading
