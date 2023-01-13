@@ -64,7 +64,7 @@ const getDescriptionFromResolvedOf = (resolvedOf: ReturnType<typeof useOf>): str
         return metaDescription;
       }
       return (
-        projectAnnotations.parameters.docs?.extractComponentDescription(meta.component, {
+        projectAnnotations.parameters.docs?.extractComponentDescription?.(meta.component, {
           component: meta.component,
           ...combineParameters(projectAnnotations.parameters, meta.parameters),
         }) || null
@@ -73,7 +73,7 @@ const getDescriptionFromResolvedOf = (resolvedOf: ReturnType<typeof useOf>): str
     case 'component': {
       const { component } = resolvedModule;
       return (
-        projectAnnotations.parameters.docs?.extractComponentDescription(component, {
+        projectAnnotations.parameters.docs?.extractComponentDescription?.(component, {
           component,
           ...projectAnnotations.parameters,
         }) || null

@@ -1,3 +1,17 @@
+## 7.0.0-beta.25 (January 12, 2023)
+
+#### Features
+
+-   Vue3: Rendering slots passed from controls [#20536](https://github.com/storybooks/storybook/pull/20536)
+
+#### Bug Fixes
+
+-   Core: Export build from core-server instead of standalone [#20574](https://github.com/storybooks/storybook/pull/20574)
+
+#### Maintenance
+
+-   Blocks: New Description API, introduce useOf [#20563](https://github.com/storybooks/storybook/pull/20563)
+
 ## 7.0.0-beta.24 (January 11, 2023)
 
 #### Maintenance

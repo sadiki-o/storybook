@@ -1,6 +1,6 @@
 {
   "name": "@storybook/html-vite",
-  "version": "7.0.0-beta.24",
+  "version": "7.0.0-beta.25",
   "description": "Storybook for HTML and Vite: Develop HTML in isolation with Hot Reloading.",
   "keywords": [
     "storybook"
@@ -48,15 +48,15 @@
     "prep": "../../../scripts/prepare/bundle.ts"
   },
   "dependencies": {
-    "@storybook/addons": "7.0.0-beta.24",
-    "@storybook/builder-vite": "7.0.0-beta.24",
-    "@storybook/channel-postmessage": "7.0.0-beta.24",
-    "@storybook/channel-websocket": "7.0.0-beta.24",
-    "@storybook/client-api": "7.0.0-beta.24",
-    "@storybook/core-server": "7.0.0-beta.24",
-    "@storybook/html": "7.0.0-beta.24",
-    "@storybook/node-logger": "7.0.0-beta.24",
-    "@storybook/preview-web": "7.0.0-beta.24",
+    "@storybook/addons": "7.0.0-beta.25",
+    "@storybook/builder-vite": "7.0.0-beta.25",
+    "@storybook/channel-postmessage": "7.0.0-beta.25",
+    "@storybook/channel-websocket": "7.0.0-beta.25",
+    "@storybook/client-api": "7.0.0-beta.25",
+    "@storybook/core-server": "7.0.0-beta.25",
+    "@storybook/html": "7.0.0-beta.25",
+    "@storybook/node-logger": "7.0.0-beta.25",
+    "@storybook/preview-web": "7.0.0-beta.25",
     "magic-string": "^0.26.1"
   },
   "devDependencies": {
@@ -76,5 +76,5 @@
     ],
     "platform": "node"
   },
-  "gitHead": "cf402923a5076bbeee8dc08fe91115d747903cbf"
+  "gitHead": "2109ab8d7c0667e686db757abf5afcbf3d48a6ec"
 }

@@ -1,6 +1,6 @@
 {
   "name": "@storybook/addon-toolbars",
-  "version": "7.0.0-beta.24",
+  "version": "7.0.0-beta.25",
   "description": "Create your own toolbar items that control story rendering",
   "keywords": [
     "addon",
@@ -68,11 +68,11 @@
     "prep": "../../../scripts/prepare/bundle.ts"
   },
   "dependencies": {
-    "@storybook/client-logger": "7.0.0-beta.24",
-    "@storybook/components": "7.0.0-beta.24",
-    "@storybook/manager-api": "7.0.0-beta.24",
-    "@storybook/preview-api": "7.0.0-beta.24",
-    "@storybook/theming": "7.0.0-beta.24"
+    "@storybook/client-logger": "7.0.0-beta.25",
+    "@storybook/components": "7.0.0-beta.25",
+    "@storybook/manager-api": "7.0.0-beta.25",
+    "@storybook/preview-api": "7.0.0-beta.25",
+    "@storybook/theming": "7.0.0-beta.25"
   },
   "devDependencies": {
     "typescript": "~4.9.3"
@@ -99,7 +99,7 @@
     ],
     "platform": "browser"
   },
-  "gitHead": "cf402923a5076bbeee8dc08fe91115d747903cbf",
+  "gitHead": "2109ab8d7c0667e686db757abf5afcbf3d48a6ec",
   "storybook": {
     "displayName": "Toolbars",
     "icon": "https://user-images.githubusercontent.com/263385/101991677-48cdf300-3c7c-11eb-93b4-19b0e3366959.png",

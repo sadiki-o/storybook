@@ -64,7 +64,7 @@ If a particular story has a problem rendering, often it means your component exp
 
 A common frontend pattern is for components to assume that they render in a specific “context” with parent components higher up the rendering hierarchy (for instance, theme providers).
 
-Use [decorators](../writing-stories/decorators.md) to “wrap” every story in the necessary context providers. The [`.storybook/preview.js`](../configure/overview.md#configure-story-rendering) file allows you to customize how components render in Canvas, the preview iframe. See how you can wrap every component rendered in Storybook with [Styled Components](https://styled-components.com/) `ThemeProvider`, [Vue's Fortawesome](https://github.com/FortAwesome/vue-fontawesome), or with an Angular theme provider component in the example below.
+Use [decorators](../writing-stories/decorators.md) to “wrap” every story in the necessary context providers. The [`.storybook/preview.js`](../configure/overview.md#configure-story-rendering) file allows you to customize how components render in Canvas, the preview iframe. See how you can wrap every component rendered in Storybook with [Styled Components](https://styled-components.com/) `ThemeProvider`, [Vue's Fontawesome](https://github.com/FortAwesome/vue-fontawesome), or with an Angular theme provider component in the example below.
 
 <!-- prettier-ignore-start -->
 
