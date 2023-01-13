@@ -167,7 +167,7 @@ export interface BuilderOptions {
   ignorePreview?: boolean;
   cache?: FileSystemCache;
   configDir: string;
-  docsMode: boolean;
+  docsMode?: boolean;
   features?: StorybookConfig['features'];
   versionCheck?: VersionCheck;
   releaseNotesData?: ReleaseNotesData;
