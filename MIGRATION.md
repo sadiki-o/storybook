@@ -25,12 +25,10 @@
   - [Webpack](#webpack)
     - [Webpack4 support discontinued](#webpack4-support-discontinued)
     - [Postcss removed](#postcss-removed)
-  - [Angular](#angular)
-    - [Dropped support for Angular 12 and below](#dropped-support-for-angular-12-and-below)
-  - [Svelte](#svelte)
-    - [SvelteKit needs the `@storybook/sveltekit` framework](#sveltekit-needs-the-storybooksveltekit-framework)
-  - [Vue](#vue)
-    - [Vue3 replaced app export with setup](#vue3-replaced-app-export-with-setup)
+  - [Framework-specific](#framework-specific)
+    - [Angular: dropped support for Angular 12 and below](#angular-dropped-support-for-angular-12-and-below)
+    - [SvelteKit: needs the `@storybook/sveltekit` framework](#sveltekit-needs-the-storybooksveltekit-framework)
+    - [Vue3: replaced app export with setup](#vue3-replaced-app-export-with-setup)
   - [Addon authors](#addon-authors)
     - [register.js removed](#registerjs-removed)
     - [No more default export from `@storybook/addons`](#no-more-default-export-from-storybookaddons)
@@ -610,18 +608,16 @@ During the 7.0 dev cycle we will be updating this section with useful resources 
 
 Storybook 6.x installed postcss by default. In 7.0 built-in support has been removed for webpack-based frameworks. If you need it, you can add it back using [`@storybook/addon-postcss`](https://github.com/storybookjs/addon-postcss).
 
-### Angular
+### Framework-specific
 
-#### Dropped support for Angular 12 and below
+#### Angular: dropped support for Angular 12 and below
 
 Official [Angular 12 LTS support ends Nov 2022](https://angular.io/guide/releases#actively-supported-versions). With that, Storybook also drops its support
 for Angular 12 and below.
 
 In order to use Storybook 7.0, you need to upgrade to at least Angular 13.
 
-### Svelte
-
-#### SvelteKit needs the `@storybook/sveltekit` framework
+#### SvelteKit: needs the `@storybook/sveltekit` framework
 
 SvelteKit projects need to use the `@storybook/sveltekit` framework in the `main.js` file. Previously it was enough to just setup Storybook with Svelte+Vite, but that is no longer the case.
 
@@ -634,9 +630,7 @@ export default {
 
 Also see the note in [Vite builder uses vite config automatically](#vite-builder-uses-vite-config-automatically) about removing `svelteOptions`.
 
-### Vue
-
-#### Vue3 replaced app export with setup
+#### Vue3: replaced app export with setup
 
 In 6.x `@storybook/vue3` exported a Vue application instance called `app`. In 7.0, this has been replaced by a `setup` function that can be used to initialize the application in your `.storybook/preview.js`:
 
