@@ -2,6 +2,7 @@ import webpack from 'webpack';
 import { logger } from '@storybook/node-logger';
 import { BuilderContext, targetFromTargetString } from '@angular-devkit/architect';
 import { sync as findUpSync } from 'find-up';
+import { dedent } from 'ts-dedent';
 
 import { JsonObject, logging } from '@angular-devkit/core';
 import { getWebpackConfig as getCustomWebpackConfig } from './angular-cli-webpack';
@@ -13,6 +14,8 @@ export async function webpackFinal(baseConfig: webpack.Configuration, options: P
     logger.info('=> Using base config because "@angular-devkit/build-angular" is not installed');
     return baseConfig;
   }
+
+  checkForLegacyBuildOptions(options);
 
   const builderContext = getBuilderContext(options);
   const builderOptions = await getBuilderOptions(options, builderContext);
@@ -80,4 +83,25 @@ async function getBuilderOptions(
   logger.info(`=> Using angular project with "tsConfig:${builderOptions.tsConfig}"`);
 
   return builderOptions;
+}
+
+export const migrationToBuilderReferrenceMessage = dedent`Your Storybook startup uses a solution that is not supported.
+    You must use angular builder to have an explicit configuration on the project used in angular.json
+    Read more at:
+    - https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#sb-angular-builder)
+    - https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#angular13)
+  `;
+
+/**
+ * Checks if using legacy configuration that doesn't use builder and logs message referring to migration docs.
+ */
+function checkForLegacyBuildOptions(options: PresetOptions) {
+  if (options.angularBrowserTarget !== undefined) {
+    // Not use legacy way with builder (`angularBrowserTarget` is defined or null with builder and undefined without)
+    return;
+  }
+
+  logger.error(migrationToBuilderReferrenceMessage);
+
+  throw Error('angularBrowserTarget is undefined.');
 }
