@@ -52,6 +52,7 @@ interface FixOptions {
   dryRun?: boolean;
   useNpm?: boolean;
   packageManager?: PackageManagerName;
+  configDir?: string;
 }
 
 enum FixStatus {
@@ -83,6 +84,7 @@ export const automigrate = async ({
   useNpm,
   packageManager: pkgMgr,
   list,
+  configDir,
 }: FixOptions = {}) => {
   if (list) {
     logAvailableMigrations();
@@ -116,7 +118,7 @@ export const automigrate = async ({
     let result;
 
     try {
-      result = await f.check({ packageManager });
+      result = await f.check({ packageManager, configDir });
     } catch (error) {
       logger.info(`⚠️  failed to check fix ${chalk.bold(f.id)}`);
       logger.error(`\n${error.stack}`);

@@ -49,7 +49,7 @@ export const getNextjsAddonOptions = (addons: Addon[]) => {
 export const nextjsFramework: Fix<NextjsFrameworkRunOptions> = {
   id: 'nextjsFramework',
 
-  async check({ packageManager }) {
+  async check({ packageManager, configDir }) {
     const packageJson = packageManager.retrievePackageJson();
     const allDeps = { ...packageJson.dependencies, ...packageJson.devDependencies };
 
@@ -57,7 +57,11 @@ export const nextjsFramework: Fix<NextjsFrameworkRunOptions> = {
       return null;
     }
 
-    const { mainConfig, version: storybookVersion } = getStorybookInfo(packageJson);
+    if (configDir) {
+      logger.info(`🔎 Storybook config directory: `, configDir);
+    }
+
+    const { mainConfig, version: storybookVersion } = getStorybookInfo(packageJson, configDir);
     if (!mainConfig) {
       logger.warn('Unable to find storybook main.js config, skipping');
       return null;

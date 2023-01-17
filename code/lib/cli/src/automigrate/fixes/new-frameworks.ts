@@ -101,12 +101,19 @@ export const getFrameworkOptions = (framework: string, main: ConfigFile) => {
 export const newFrameworks: Fix<NewFrameworkRunOptions> = {
   id: 'newFrameworks',
 
-  async check({ packageManager }) {
+  async check({ packageManager, configDir }) {
     const packageJson = packageManager.retrievePackageJson();
     const allDeps = { ...packageJson.dependencies, ...packageJson.devDependencies };
 
+    if (configDir) {
+      logger.info(`🔎 Storybook config directory: `, configDir);
+    }
     // FIXME: update to use renderer instead of framework
-    const { mainConfig, version: storybookVersion, framework } = getStorybookInfo(packageJson);
+    const {
+      mainConfig,
+      version: storybookVersion,
+      framework,
+    } = getStorybookInfo(packageJson, configDir);
     if (!mainConfig) {
       logger.warn('Unable to find storybook main.js config, skipping');
       return null;

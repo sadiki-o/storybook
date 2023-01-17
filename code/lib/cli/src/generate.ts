@@ -174,6 +174,7 @@ program
   .option('--package-manager <npm|pnpm|yarn1|yarn2>', 'Force package manager')
   .option('-N --use-npm', 'Use npm as package manager (deprecated)')
   .option('-l --list', 'List available migrations')
+  .option('-c, --config-dir <dir-name>', 'Directory of Storybook configurations to migrate')
   .action(async (fixId, options) => {
     await automigrate({ fixId, ...options }).catch((e) => {
       logger.error(e);

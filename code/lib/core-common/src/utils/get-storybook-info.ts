@@ -68,25 +68,25 @@ const findConfigFile = (prefix: string, configDir: string) => {
   return extension ? `${filePrefix}.${extension}` : null;
 };
 
-const getConfigInfo = (packageJson: PackageJson) => {
-  let configDir = '.storybook';
+const getConfigInfo = (packageJson: PackageJson, configDir?: string) => {
+  let storybookConfigDir = configDir ?? '.storybook';
   const storybookScript = packageJson.scripts?.['storybook'];
-  if (storybookScript) {
+  if (storybookScript && !configDir) {
     const configParam = getStorybookConfiguration(storybookScript, '-c', '--config-dir');
-    if (configParam) configDir = configParam;
+    if (configParam) storybookConfigDir = configParam;
   }
 
   return {
     configDir,
-    mainConfig: findConfigFile('main', configDir),
-    previewConfig: findConfigFile('preview', configDir),
-    managerConfig: findConfigFile('manager', configDir),
+    mainConfig: findConfigFile('main', storybookConfigDir),
+    previewConfig: findConfigFile('preview', storybookConfigDir),
+    managerConfig: findConfigFile('manager', storybookConfigDir),
   };
 };
 
-export const getStorybookInfo = (packageJson: PackageJson) => {
+export const getStorybookInfo = (packageJson: PackageJson, configDir?: string) => {
   const rendererInfo = getRendererInfo(packageJson);
-  const configInfo = getConfigInfo(packageJson);
+  const configInfo = getConfigInfo(packageJson, configDir);
 
   return {
     ...rendererInfo,
